@@ -1,35 +1,113 @@
-import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react'
+import { createSystem, defaultConfig } from '@chakra-ui/react';
+import { textRecipe } from './components/recipes';
 
-const config = defineConfig({
+// Create config without defineConfig to test if that's causing issues
+const customConfig = {
+  globalCss: {
+    body: {
+      fontSize: '14px',
+      background: 'brand.black',
+    },
+  },
   theme: {
+    breakpoints: {
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
     tokens: {
       colors: {
         brand: {
-          50: { value: '#f0f9ff' },
-          100: { value: '#e0f2fe' },
-          200: { value: '#bae6fd' },
-          300: { value: '#7dd3fc' },
-          400: { value: '#38bdf8' },
-          500: { value: '#0ea5e9' },
-          600: { value: '#0284c7' },
-          700: { value: '#0369a1' },
-          800: { value: '#075985' },
-          900: { value: '#0c3d66' },
+          primary: { value: '#38A0CC' },
+          black: { value: '#0C0C0C' },
+          white: { value: '#FBFAF2' },
+          blue: { value: '#38A0CC' },
+          green: { value: '#2BA07A' },
+          red: { value: '#D6544B' },
+          yellow: { value: '#EFDF60' },
+          greyStrong: { value: '#27272A' },
+          greyMedium: { value: '#52525B' },
+          greyLight: { value: '#A1A1AA' },
+          greySoft: { value: '#E4E4E7' },
         },
       },
+      fontSizes: {
+        aux: { value: '12px' },
+        body: { value: '14px' },
+        heading: { value: '24px' },
+        subheading: { value: '18px' },
+        display: { value: '32px' },
+      },
+      spacing: {
+        2: { value: '0.5rem' },
+        4: { value: '1rem' },
+        8: { value: '2rem' },
+      },
+      radii: {
+        default: { value: '8px' },
+      },
     },
+    recipes: {
+      text: textRecipe,
+    },
+
     semanticTokens: {
       colors: {
-        brand: {
-          solid: { value: '{colors.brand.500}' },
-          contrast: { value: 'white' },
-          fg: { value: '{colors.brand.700}' },
-          muted: { value: '{colors.brand.100}' },
-          subtle: { value: '{colors.brand.50}' },
+        // Background colors that change based on color mode
+        bg: {
+          primary: {
+            value: { base: 'brand.white', _dark: 'brand.black' },
+          },
+          secondary: {
+            value: { base: 'brand.greySoft', _dark: 'brand.greyStrong' },
+          },
+          card: {
+            value: { base: '#FFFFFF', _dark: '#1A1A1A' },
+          },
+        },
+        // Text colors that adapt to color mode
+        text: {
+          heading: {
+            value: {
+              base: '{colors.brand.black}',
+              _dark: '{colors.brand.white}',
+            },
+          },
+          body: {
+            value: {
+              base: '{colors.brand.greyMedium}',
+              _dark: '{colors.brand.greyLight}',
+            },
+          },
+          display: {
+            value: {
+              base: '{colors.brand.black}',
+              _dark: '{colors.brand.white}',
+            },
+          },
+        },
+        // Border colors
+        border: {
+          primary: {
+            value: {
+              base: '{colors.brand.greySoft}',
+              _dark: '{colors.brand.greyMedium}',
+            },
+          },
+          subtle: {
+            value: {
+              base: '{colors.brand.greyLight}',
+              _dark: '{colors.brand.greyStrong}',
+            },
+          },
         },
       },
     },
   },
-})
+};
 
-export const system = createSystem(defaultConfig, config)
+// Merge config with defaultConfig - custom recipes should override defaults
+// The second argument to createSystem overrides the first, so our button recipe should take precedence
+export const system = createSystem(defaultConfig, customConfig);
