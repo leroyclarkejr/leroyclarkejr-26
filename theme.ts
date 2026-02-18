@@ -5,8 +5,9 @@ import { textRecipe } from './components/recipes';
 const customConfig = {
   globalCss: {
     body: {
-      fontSize: '14px',
+      fontSize: '16px',
       background: 'brand.black',
+      fontFamily: 'body',
     },
   },
   theme: {
@@ -21,24 +22,35 @@ const customConfig = {
       colors: {
         brand: {
           primary: { value: '#38A0CC' },
-          black: { value: '#0C0C0C' },
-          white: { value: '#FBFAF2' },
+          black: { value: '1f1f1f' },
+          white: { value: '#FFFFFC' },
           blue: { value: '#38A0CC' },
           green: { value: '#2BA07A' },
           red: { value: '#D6544B' },
           yellow: { value: '#EFDF60' },
           greyStrong: { value: '#27272A' },
           greyMedium: { value: '#52525B' },
-          greyLight: { value: '#A1A1AA' },
+          greyLight: { value: '#b3b3b4' },
           greySoft: { value: '#E4E4E7' },
         },
       },
       fontSizes: {
-        aux: { value: '12px' },
-        body: { value: '14px' },
+        aux: { value: '14px' },
+        body: { value: '16px' },
         heading: { value: '24px' },
         subheading: { value: '18px' },
         display: { value: '32px' },
+      },
+      fonts: {
+        heading: { value: 'var(--font-geist-sans), system-ui, sans-serif' },
+        subheading: { value: 'var(--font-geist-mono), system-ui, sans-serif' },
+        display: { value: 'var(--font-geist-sans), system-ui, sans-serif' },
+        body: { value: 'var(--font-newsreader), Georgia, serif' },
+        pixel: { value: 'var(--font-geist-pixel-grid), Georgia, serif' },
+      },
+      letterSpacings: {
+        tight: { value: '-0.04em' },
+        normal: { value: '0' },
       },
       spacing: {
         2: { value: '0.5rem' },
@@ -70,6 +82,12 @@ const customConfig = {
         // Text colors that adapt to color mode
         text: {
           heading: {
+            value: {
+              base: '{colors.brand.black}',
+              _dark: '{colors.brand.white}',
+            },
+          },
+          subheading: {
             value: {
               base: '{colors.brand.black}',
               _dark: '{colors.brand.white}',

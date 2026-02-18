@@ -1,3 +1,20 @@
+html {
+  --brand-black: #0a0a0a;
+  --brand-white: #fffffc;
+  --brand-primary: #38a0cc;
+  --brand-blue: #38a0cc;
+  --brand-green: #2ba07a;
+  --brand-red: #d6544b;
+  --brand-yellow: #efdf60;
+  --brand-grey-strong: #27272a;
+  --brand-grey-medium: #52525b;
+  --brand-grey-light: #a1a1aa;
+  --brand-grey-soft: #e4e4e7;
+
+  background-color: var(--brand-black);
+  color: var(--brand-white);
+}
+
 .profileImg {
   border-radius: 8px;
 }

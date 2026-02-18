@@ -15,7 +15,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
 
-    <Container maxW="6xl" as="main" flex="1" py="8">
+    <Container maxW="6xl" as="main" flex="1" py="8" px="6">
       {children}
     </Container>
   </Box>
