@@ -25,8 +25,9 @@ export const textRecipe = defineRecipe({
         fontSize: 'subheading',
         fontWeight: 'bold',
         color: 'text.body',
-        fontFamily: 'heading',
+        fontFamily: 'subheading',
         letterSpacing: 'tight',
+        textTransform: 'capitalize',
       },
       display: {
         fontSize: 'display',

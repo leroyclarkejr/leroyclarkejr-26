@@ -1,131 +1,160 @@
 import Layout from '../components/Layout';
 import Image from 'next/image';
 import avatarImage from './../public/leroyclarkejr.jpg';
-import { Box, VStack, Text, Container, Link, HStack, Flex, Grid, GridItem } from '@chakra-ui/react';
-import { FaLinkedin, FaInstagram, FaGithub } from 'react-icons/fa';
-import { IoMail } from 'react-icons/io5';
+import { Box, VStack, Text, Container, Link, HStack } from '@chakra-ui/react';
+import { Linkedin, Instagram, Github, Apple, Mail } from 'lucide-react';
+import constants from '@/constants';
+import type { IconName } from '@/constants';
 
-const ConnectLinkCompact: React.FC<{ href: string; label: string; icon: React.ReactNode }> = ({
-  href,
-  label,
-  icon,
-}) => (
-  <Link
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    display="flex"
-    alignItems="center"
-    justifyContent="space-between"
-    px={4}
-    py={3}
-    border="1px solid"
-    borderColor="border.primary"
-    borderRadius="sm"
-    color="text.body"
-    transition="all 0.2s"
-    _hover={{
-      color: 'text.heading',
-      borderColor: 'border.subtle',
-      bg: 'bg.secondary',
-    }}
-    textDecoration="none"
-  >
-    <Text fontSize="aux" fontWeight="medium">
-      {label}
-    </Text>
-    <Box color="brand.greyMedium" transition="colors 0.2s" _groupHover={{ color: 'text.body' }}>
-      {icon}
-    </Box>
-  </Link>
+// Icon mapping utility
+const iconMap: Record<IconName, React.ReactElement> = {
+  instagram: <Instagram size={16} />,
+  linkedin: <Linkedin size={16} />,
+  github: <Github size={16} />,
+  mail: <Mail size={16} />,
+};
+
+const SectionLabel: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <Text variant="subheading" fontSize="aux" mb={6} textTransform="capitalize">
+    {children}
+  </Text>
 );
+
+// const StatusBadge: React.FC<{ status: 'Beta' | 'Live' | 'In Development' }> = ({ status }) => {
+//   const statusConfig = {
+//     Beta: { label: 'Live Beta', bg: '#265ea2/30', borderColor: '#265ea2' },
+//     Live: { label: 'Live', bg: '#22c55e/30', borderColor: '#22c55e' },
+//     'In Development': { label: 'In Dev', bg: '#f59e0b/30', borderColor: '#f59e0b' },
+//   };
+
+//   const config = statusConfig[status];
+
+//   return (
+//     <Badge
+//       bg={config.bg}
+//       borderWidth={1}
+//       borderColor={config.borderColor}
+//       color="brand.white"
+//       fontSize="10px"
+//       fontFamily="heading"
+//       fontWeight="600"
+//       px={2}
+//       py={0.5}
+//       borderRadius="sm"
+//       textTransform="uppercase"
+//       letterSpacing="0.05em"
+//     >
+//       {config.label}
+//     </Badge>
+//   );
+// };
 
 const IndexPage = () => (
   <Layout title="Home | Next.js + TypeScript Example">
     <Container maxW="lg">
       <VStack alignItems="flex-start" gap={0} mb={10}>
-        <Box maxW={600} borderRadius={6} mb="10">
-          <Image src={avatarImage} alt="Leroy Clarke Jr" priority className="profileImg" />
+        <Box maxW={120} borderRadius={8} overflow="hidden" mb={8}>
+          <Image
+            src={avatarImage}
+            alt="Leroy Clarke Jr"
+            priority
+            width={120}
+            height={120}
+            className="profileImg"
+          />
         </Box>
-        <Text variant="heading" mb={2}>
+        <Text variant="display" mb={3}>
           Leroy Clarke Jr
         </Text>
-
-        <Text mb={6}>
+        <Text fontSize="body" lineHeight="1.7" maxW="540px" mb={4}>
           Self-taught{' '}
-          <Text as="span" fontWeight={700} color="brand.white" whiteSpace="nowrap">
-            Product Engineer{' '}
-            <Link
-              href="https://posthog.com/blog/what-is-a-product-engineer"
-              fontWeight={400}
-              // fontStyle="italic"
-              textDecoration="underline"
-            >
-              (what's that?)
-            </Link>
+          <Text as="span" fontWeight={700} color="text.heading">
+            Product Engineer
           </Text>{' '}
-          and Penn State Grad. I currently build software at{' '}
-          <Text as="span" fontWeight={700} color="brand.white">
+          and Penn State Grad. I build software at{' '}
+          <Text as="span" fontWeight={700} color="text.heading">
             The Farmers Dog
           </Text>{' '}
-          and build tools the help ambitious individuals their vision in to reality.
+          and craft tools that help ambitious people turn vision their vision into reality.
         </Text>
-        <Text>
-          If I'm not at the keyboard I'm probably somewhere either running far, lifting heavy, or
-          perculating some new fascination of the intersection of tech & art.
+        <Text fontSize="body" lineHeight="1.7" maxW="540px">
+          When I'm away from the keyboard, I'm running far, lifting heavy, or exploring the
+          intersection of tech and art.
         </Text>
       </VStack>
-      <VStack alignItems="flex-start" py={10}>
-        <Text variant="subheading" fontSize="aux" mb={10}>
-          -- Selected Projects
-        </Text>
 
-        <Box width="100%">
-          <HStack justifyContent="space-between" mb={2}>
-            <Text variant="heading" fontSize="body">
-              Transcripted
-            </Text>
+      <Box borderTop="1px solid" borderColor="border.subtle" pt={10} mb={10}>
+        <SectionLabel>Selected Projects</SectionLabel>
+        <VStack gap={8} alignItems="flex-start">
+          {constants.projects
+            .filter((project) => project.featured)
+            .map((project) => (
+              <Box key={project.id} width="100%">
+                <HStack justifyContent="space-between" alignItems="center" mb={2}>
+                  <HStack gap={3} alignItems="center">
+                    <Text
+                      fontFamily="heading"
+                      fontWeight="600"
+                      color="text.heading"
+                      fontSize="subheading"
+                    >
+                      {project.title}
+                    </Text>
+                  </HStack>
+                  <Text fontFamily="subheading" fontWeight={400} fontSize="aux" color="brand.body">
+                    {project.date}
+                  </Text>
+                </HStack>
+                {/* {project.status && <StatusBadge status={project.status}  />} */}
+                <Text mb={3} maxW="540px">
+                  {project.description}
+                </Text>
+                <Link
+                  href={project.link.href}
+                  display="inline-flex"
+                  alignItems="center"
+                  gap={2}
+                  fontFamily="heading"
+                  fontSize="aux"
+                  fontWeight="600"
+                  color="text.heading"
+                  bg="bg.secondary"
+                  border="1px solid"
+                  borderColor="border.primary"
+                  px={4}
+                  py={2}
+                  borderRadius="sm"
+                  _hover={{ bg: 'brand.greyStrong', borderColor: 'border.subtle' }}
+                  textDecoration="none"
+                  transition="all 0.2s"
+                >
+                  <Apple size={16} />
+                  Download for Mac
+                </Link>
+              </Box>
+            ))}
+        </VStack>
+      </Box>
 
-            <Text variant="body" fontSize="body">
-              Feb 2026
-            </Text>
-          </HStack>
-
-          <Text>
-            Transforming raw audio into structured, editorial-grade text. A tool for creators to
-            manifest their voice across mediums.
-          </Text>
-        </Box>
-      </VStack>
-
-      <VStack alignItems="flex-start" py={10}>
-        <Text variant="subHeading" fontSize="aux" mb={10}>
-          -- Connect
-        </Text>
-
-        <Grid templateColumns={{ base: '1fr', sm: 'repeat(2, 1fr)' }} gap={3} width="100%">
-          <ConnectLinkCompact
-            href="https://linkedin.com/in/leroyclarkejr"
-            label="LinkedIn"
-            icon={(<FaLinkedin size={14} />) as React.ReactElement}
-          />
-          <ConnectLinkCompact
-            href="https://instagram.com/leroyclarkejr"
-            label="Instagram"
-            icon={(<FaInstagram size={14} />) as React.ReactElement}
-          />
-          <ConnectLinkCompact
-            href="https://github.com/leroyclarkejr"
-            label="Github"
-            icon={(<FaGithub size={14} />) as React.ReactElement}
-          />
-          <ConnectLinkCompact
-            href="mailto:hello@leroyclarkejr.com"
-            label="Email Me"
-            icon={(<IoMail size={14} />) as React.ReactElement}
-          />
-        </Grid>
-      </VStack>
+      <Box borderTop="1px solid" borderColor="border.subtle" pt={10}>
+        <SectionLabel>Connect</SectionLabel>
+        <HStack gap={5}>
+          {constants.socials.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              color="text.body"
+              _hover={{ color: 'text.heading' }}
+              aria-label={link.name}
+              transition="color 0.2s"
+            >
+              {iconMap[link.icon]}
+            </Link>
+          ))}
+        </HStack>
+      </Box>
     </Container>
   </Layout>
 );
