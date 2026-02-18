@@ -3,7 +3,10 @@ import { geistSans, geistMono, newsreader } from '@/lib/fonts';
 
 export default function Document() {
   return (
-    <Html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable}`}>
+    <Html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable}`}
+    >
       <Head />
       <body>
         <Main />

@@ -10,7 +10,8 @@
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write \"**/*.{ts,tsx,json,css,md}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,json,css,md}\""
+    "format:check": "prettier --check \"**/*.{ts,tsx,json,css,md}\"",
+    "check": "npm run type-check && npm run lint && npm run format:check && npm run build"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.33.0",
@@ -31,7 +32,7 @@
     "@types/react-dom": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^8.55.0",
     "@typescript-eslint/parser": "^8.55.0",
-    "eslint": "^9.39.2",
+    "eslint": "^10.0.0",
     "eslint-config-next": "^16.1.6",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
