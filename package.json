@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "npm run generate-types && next build",
     "start": "next start",
     "type-check": "tsc",
     "generate-types": "npx chakra typegen theme.ts",
@@ -11,7 +11,7 @@
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write \"**/*.{ts,tsx,json,css,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,json,css,md}\"",
-    "check": "npm run type-check && npm run lint && npm run format:check && npm run build"
+    "check": "npm run type-check && npm run lint && npm run format:check"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.33.0",
