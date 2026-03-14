@@ -50,7 +50,7 @@ const SectionLabel: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 // };
 
 const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
+  <Layout title="Leroy Clarke Jr — Digital Garden">
     <Container maxW="lg">
       <VStack alignItems="flex-start" gap={0} mb={10}>
         <Box maxW={120} borderRadius={8} overflow="hidden" mb={8}>
@@ -67,24 +67,20 @@ const IndexPage = () => (
           Leroy Clarke Jr
         </Text>
         <Text fontSize="body" lineHeight="1.7" maxW="540px" mb={4}>
-          Self-taught{' '}
-          <Text as="span" fontWeight={700} color="text.heading">
-            Product Engineer
-          </Text>{' '}
-          and Penn State Grad. I build software at{' '}
+          Product Engineer at{' '}
           <Text as="span" fontWeight={700} color="text.heading">
             The Farmers Dog
-          </Text>{' '}
-          and craft tools that help ambitious people turn vision their vision into reality.
+          </Text>
+          . I build software and craft tools at the intersection of engineering and creativity.
         </Text>
         <Text fontSize="body" lineHeight="1.7" maxW="540px">
-          When I'm away from the keyboard, I'm running far, lifting heavy, or exploring the
-          intersection of tech and art.
+          This is my digital garden — a place to share what I'm building, thinking about, and
+          exploring.
         </Text>
       </VStack>
 
       <Box borderTop="1px solid" borderColor="border.subtle" pt={10} mb={10}>
-        <SectionLabel>Selected Projects</SectionLabel>
+        <SectionLabel>Projects</SectionLabel>
         <VStack gap={8} alignItems="flex-start">
           {constants.projects
             .filter((project) => project.featured)
