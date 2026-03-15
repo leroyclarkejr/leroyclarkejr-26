@@ -6,6 +6,7 @@ import { Tooltip } from '@/components/ui/tooltip';
 import { Linkedin, Instagram, Github, Apple, Mail } from 'lucide-react';
 import constants from '@/constants';
 import type { IconName } from '@/constants';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 // Icon mapping utility
 const iconMap: Record<IconName, React.ReactElement> = {
@@ -50,10 +51,15 @@ const SectionLabel: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 //   );
 // };
 
-const IndexPage = () => (
+const IndexPage = () => {
+  const introRef = useScrollReveal<HTMLDivElement>();
+  const projectsRef = useScrollReveal<HTMLDivElement>();
+  const connectRef = useScrollReveal<HTMLDivElement>();
+
+  return (
   <Layout title="Leroy Clarke Jr — Digital Garden">
     <Container maxW="lg">
-      <VStack alignItems="flex-start" gap={0} mb={10}>
+      <VStack ref={introRef} className="scroll-reveal" alignItems="flex-start" gap={0} mb={10}>
         <Box maxW={120} borderRadius={8} overflow="hidden" mb={8}>
           <Image
             src={avatarImage}
@@ -96,7 +102,7 @@ const IndexPage = () => (
         </Text>
       </VStack>
 
-      <Box borderTop="1px solid" borderColor="border.subtle" pt={10} mb={10}>
+      <Box ref={projectsRef} className="scroll-reveal delay-1" borderTop="1px solid" borderColor="border.subtle" pt={10} mb={10}>
         <SectionLabel>Projects</SectionLabel>
         <VStack gap={8} alignItems="flex-start">
           {constants.projects
@@ -149,7 +155,7 @@ const IndexPage = () => (
         </VStack>
       </Box>
 
-      <Box borderTop="1px solid" borderColor="border.subtle" pt={10}>
+      <Box ref={connectRef} className="scroll-reveal delay-2" borderTop="1px solid" borderColor="border.subtle" pt={10}>
         <SectionLabel>Connect</SectionLabel>
         <HStack gap={5}>
           {constants.socials.map((link) => (
@@ -170,6 +176,7 @@ const IndexPage = () => (
       </Box>
     </Container>
   </Layout>
-);
+  );
+};
 
 export default IndexPage;
