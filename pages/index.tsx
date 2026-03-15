@@ -2,6 +2,7 @@ import Layout from '../components/Layout';
 import Image from 'next/image';
 import avatarImage from './../public/leroyclarkejr.jpg';
 import { Box, VStack, Text, Container, Link, HStack } from '@chakra-ui/react';
+import { Tooltip } from '@/components/ui/tooltip';
 import { Linkedin, Instagram, Github, Apple, Mail } from 'lucide-react';
 import constants from '@/constants';
 import type { IconName } from '@/constants';
@@ -67,15 +68,31 @@ const IndexPage = () => (
           Leroy Clarke Jr
         </Text>
         <Text fontSize="body" lineHeight="1.7" maxW="540px" mb={4}>
-          Product Engineer at{' '}
+          First gen Jamaican. 3x All-American gymnast. Penn State grad. I started my professional
+          career in finance but soon taught myself to code because I'm a creative at heart. Currently
+          a software engineer at{' '}
           <Text as="span" fontWeight={700} color="text.heading">
-            The Farmers Dog
+            The Farmer's Dog
           </Text>
-          . I build software and craft tools at the intersection of engineering and creativity.
+          .
         </Text>
         <Text fontSize="body" lineHeight="1.7" maxW="540px">
-          This is my digital garden — a place to share what I'm building, thinking about, and
-          exploring.
+          These days my athletic energy goes into half marathons (BK, Jersey City, Miami) and
+          training for my first Hyrox. Outside of work I find myself in build mode because I can't
+          help it. Currently fascinated with building tools that help ambitious people{' '}
+          <Tooltip content="Be the conscious driver of your life, not just an effect of your environment.">
+            <Text
+              as="span"
+              textDecoration="underline"
+              textDecorationStyle="dotted"
+              textUnderlineOffset="3px"
+              cursor="help"
+              color="text.heading"
+            >
+              be their own cause
+            </Text>
+          </Tooltip>
+          .
         </Text>
       </VStack>
 
