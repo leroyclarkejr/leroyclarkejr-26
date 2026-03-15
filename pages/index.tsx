@@ -2,6 +2,7 @@ import Layout from '../components/Layout';
 import Image from 'next/image';
 import avatarImage from './../public/leroyclarkejr.jpg';
 import { Box, VStack, Text, Container, Link, HStack } from '@chakra-ui/react';
+import { Tooltip } from '@/components/ui/tooltip';
 import { Linkedin, Instagram, Github, Apple, Mail } from 'lucide-react';
 import constants from '@/constants';
 import type { IconName } from '@/constants';
@@ -50,7 +51,7 @@ const SectionLabel: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 // };
 
 const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
+  <Layout title="Leroy Clarke Jr — Digital Garden">
     <Container maxW="lg">
       <VStack alignItems="flex-start" gap={0} mb={10}>
         <Box maxW={120} borderRadius={8} overflow="hidden" mb={8}>
@@ -67,24 +68,36 @@ const IndexPage = () => (
           Leroy Clarke Jr
         </Text>
         <Text fontSize="body" lineHeight="1.7" maxW="540px" mb={4}>
-          Self-taught{' '}
+          First gen Jamaican. 3x All-American gymnast. Penn State grad. I started my professional
+          career in finance but soon taught myself to code because I'm a creative at heart. Currently
+          a software engineer at{' '}
           <Text as="span" fontWeight={700} color="text.heading">
-            Product Engineer
-          </Text>{' '}
-          and Penn State Grad. I build software at{' '}
-          <Text as="span" fontWeight={700} color="text.heading">
-            The Farmers Dog
-          </Text>{' '}
-          and craft tools that help ambitious people turn vision their vision into reality.
+            The Farmer's Dog
+          </Text>
+          .
         </Text>
         <Text fontSize="body" lineHeight="1.7" maxW="540px">
-          When I'm away from the keyboard, I'm running far, lifting heavy, or exploring the
-          intersection of tech and art.
+          These days my athletic energy goes into half marathons (BK, Jersey City, Miami) and
+          training for my first Hyrox. Outside of work I find myself in build mode because I can't
+          help it. Currently fascinated with building tools that help ambitious people{' '}
+          <Tooltip content="Be the conscious driver of your life, not just an effect of your environment.">
+            <Text
+              as="span"
+              textDecoration="underline"
+              textDecorationStyle="dotted"
+              textUnderlineOffset="3px"
+              cursor="help"
+              color="text.heading"
+            >
+              be their own cause
+            </Text>
+          </Tooltip>
+          .
         </Text>
       </VStack>
 
       <Box borderTop="1px solid" borderColor="border.subtle" pt={10} mb={10}>
-        <SectionLabel>Selected Projects</SectionLabel>
+        <SectionLabel>Projects</SectionLabel>
         <VStack gap={8} alignItems="flex-start">
           {constants.projects
             .filter((project) => project.featured)
