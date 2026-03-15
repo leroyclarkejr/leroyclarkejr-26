@@ -60,8 +60,8 @@ const constants: ConstantProps = {
       date: 'Feb 2026',
       status: 'Beta',
       description:
-        'A local-first desktop transcription application powered by Open Source Whisper AI.',
-      link: { href: 'https://transcripted-hazel.vercel.app/download', label: '' },
+        'Local-first desktop app. Extracting notes from YouTube & social media videos was too tedious, so I created a tool to fetch and highlight transcriptions entirely offline. No cloud. No servers. No subscriptions. Note taking efficiency.',
+      link: { href: 'https://transcripted-hazel.vercel.app/', label: '' },
       featured: true,
     },
   ],

@@ -43,9 +43,9 @@ const customConfig = {
       },
       fonts: {
         heading: { value: 'var(--font-geist-sans), system-ui, sans-serif' },
-        subheading: { value: 'var(--font-geist-mono), system-ui, sans-serif' },
+        subheading: { value: 'var(--font-geist-mono), system-ui, monospace' },
         display: { value: 'var(--font-geist-sans), system-ui, sans-serif' },
-        body: { value: 'var(--font-newsreader), Georgia, serif' },
+        body: { value: 'var(--font-geist-sans), system-ui, sans-serif' },
         pixel: { value: 'var(--font-geist-pixel-grid), Georgia, serif' },
       },
       letterSpacings: {

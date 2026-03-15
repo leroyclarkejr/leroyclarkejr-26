@@ -1,5 +1,4 @@
-import { Geist, Geist_Mono } from 'next/font/google';
-import { Newsreader } from 'next/font/google';
+import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
 
 export const geistSans = Geist({
   subsets: ['latin'],
@@ -15,9 +14,10 @@ export const geistMono = Geist_Mono({
   weight: ['400', '500', '600', '700'],
 });
 
-export const newsreader = Newsreader({
+export const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
-  variable: '--font-newsreader',
+  variable: '--font-instrument-serif',
   display: 'swap',
-  weight: ['400', '500', '600'],
+  weight: ['400'],
+  style: ['normal', 'italic'],
 });
