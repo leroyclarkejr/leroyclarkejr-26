@@ -1,19 +1,23 @@
 import React, { ReactNode } from 'react';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { Box, Container } from '@chakra-ui/react';
+import { SITE_URL } from '@/lib/seo';
 
 type Props = {
   children?: ReactNode;
   title?: string;
+  description?: string;
+  path?: string;
 };
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
+const Layout = ({ children, title, description, path }: Props) => (
   <Box minH="100vh" display="flex" flexDirection="column" className="dark">
-    <Head>
-      <title>{title}</title>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    </Head>
+    <NextSeo
+      title={title}
+      description={description}
+      canonical={path ? `${SITE_URL}${path}` : undefined}
+      {...(path === '/' ? { titleTemplate: '' } : {})}
+    />
 
     <Container maxW="6xl" as="main" flex="1" py="8" px="6">
       {children}

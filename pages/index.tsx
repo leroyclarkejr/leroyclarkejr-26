@@ -1,13 +1,15 @@
+'use client';
+
 import Layout from '../components/Layout';
 import Image from 'next/image';
 import avatarImage from './../public/leroyclarkejr.jpg';
 import { Box, VStack, Text, Container, Link, HStack } from '@chakra-ui/react';
-import { Tooltip } from '@/components/ui/tooltip';
 import { Linkedin, Instagram, Github, ArrowUpRight, Mail } from 'lucide-react';
 import constants from '@/constants';
 import type { IconName } from '@/constants';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useInView } from 'motion/react';
+import { ClientTooltip } from '@/components/ClientTooltip';
 
 // Icon mapping utility
 const iconMap: Record<IconName, React.ReactElement> = {
@@ -16,12 +18,6 @@ const iconMap: Record<IconName, React.ReactElement> = {
   github: <Github size={16} />,
   mail: <Mail size={16} />,
 };
-
-const SectionLabel: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <Text variant="subheading" fontFamily="subheading" fontSize="aux" mb={6} textTransform="capitalize">
-    {children}
-  </Text>
-);
 
 // const StatusBadge: React.FC<{ status: 'Beta' | 'Live' | 'In Development' }> = ({ status }) => {
 //   const statusConfig = {
@@ -62,117 +58,97 @@ const staggerVariants = {
 };
 
 const fadeUpVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.35, ease: 'easeOut' as const },
+    transition: { duration: 0.4, ease: 'easeInOut' as const },
   },
 };
 
 const IndexPage = () => {
-  const introRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLDivElement>(null);
-  const connectRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
 
-  const introInView = useInView(introRef, { once: true, margin: '-15%' });
-  const projectsInView = useInView(projectsRef, { once: true, margin: '-15%' });
-  const connectInView = useInView(connectRef, { once: true, amount: 0.1 });
+  const containerInView = useInView(containerRef, { once: true, margin: '-15%' });
 
   return (
-    <Layout title="Leroy Clarke Jr — Digital Garden">
-      <Container maxW="2xl">
-        <motion.div
-          ref={introRef}
-          variants={staggerVariants}
-          initial="hidden"
-          animate={introInView ? 'visible' : 'hidden'}
-        >
-          <VStack alignItems="flex-start" gap={0} mb={10}>
-            <motion.div variants={fadeUpVariants}>
-              <Box maxW={320} borderRadius={8} overflow="hidden" mb={8}>
+    <Layout
+      title="Leroy Clarke Jr — Digital Garden"
+      description="I'm Leroy, a self-taught Software Engineer from Jersey City. Currently building tools for ambitious people."
+      path="/"
+    >
+      <motion.div
+        ref={containerRef}
+        variants={staggerVariants}
+        initial="hidden"
+        animate={containerInView ? 'visible' : 'hidden'}
+        suppressHydrationWarning
+      >
+        <Container maxW="2xl">
+          <motion.div variants={fadeUpVariants}>
+            <VStack alignItems="flex-start" gap={0} mb={10}>
+              <Box maxW={{ base: 100, md: 320 }} borderRadius={8} overflow="hidden" mb={8}>
                 <Image src={avatarImage} alt="Leroy Clarke Jr" priority className="profileImg" />
               </Box>
-            </motion.div>
-            <motion.div variants={fadeUpVariants}>
-              <Text variant="display" mb={3}>
-                Leroy Clarke Jr
-              </Text>
-            </motion.div>
-            <motion.div variants={fadeUpVariants}>
-              <Text fontSize="body" lineHeight="1.7" mb={4}>
-                First gen Jamaican. 3x All-American gymnast. Penn State grad. I started my
-                professional career in finance but soon taught myself to code because I'm a creative
-                at heart. Currently a software engineer at{' '}
-                <Text as="span" fontWeight={700} color="text.heading">
-                  The Farmer's Dog
+
+              <motion.h1 className="display-name">Leroy Clarke Jr</motion.h1>
+
+              <motion.div variants={fadeUpVariants}>
+                <Text fontSize="body" lineHeight="1.7" mb={4}>
+                  First gen Jamaican. 3x All-American gymnast. Penn State grad. I started my
+                  professional career in finance but soon taught myself to code because I'm a
+                  creative at heart. Currently a{' '}
+                  <Text as="span" fontWeight={700} color="text.heading">
+                    Software Engineer
+                  </Text>{' '}
+                  at{' '}
+                  <Text as="span" fontWeight={700} color="text.heading">
+                    The Farmer's Dog
+                  </Text>
+                  .
                 </Text>
-                .
-              </Text>
-            </motion.div>
-            <motion.div variants={fadeUpVariants}>
-              <Text fontSize="body" lineHeight="1.7">
-                These days my athletic energy goes into half marathons (BK, Jersey City, Miami) and
-                training for my first Hyrox. Outside of work I find myself in build mode because I
-                can't help it. Currently fascinated with building tools that help ambitious people{' '}
-                <Tooltip content="Be the conscious driver of your life, not just an effect of your environment.">
+              </motion.div>
+
+              <motion.div variants={fadeUpVariants}>
+                <Text fontSize="body" lineHeight="1.7">
+                  These days my athletic energy goes into half marathons (BK, Jersey City, Miami)
+                  and training for my first Hyrox. Outside of work I find myself in build mode
+                  because I can't help it. Currently fascinated with building tools that help
+                  ambitious people{' '}
                   <Text
                     as="span"
-                    textDecoration="underline"
-                    textDecorationStyle="dotted"
-                    textUnderlineOffset="3px"
-                    cursor="help"
+                    display="inline-flex"
+                    alignItems="center"
+                    gap={1}
+                    whiteSpace="nowrap"
                     color="text.heading"
+                    fontWeight={700}
                   >
                     be their own cause
+                    <ClientTooltip open={tooltipOpen} onOpenChange={setTooltipOpen} />
                   </Text>
-                </Tooltip>
-                .
-              </Text>
-            </motion.div>
-          </VStack>
-        </motion.div>
+                  .
+                </Text>
+              </motion.div>
+            </VStack>
+          </motion.div>
 
-        <motion.div
-          ref={projectsRef}
-          variants={staggerVariants}
-          initial="hidden"
-          animate={projectsInView ? 'visible' : 'hidden'}
-        >
-          <Box borderTop="1px solid" borderColor="border.subtle" pt={10} mb={10}>
-            <motion.div variants={fadeUpVariants}>
-              <SectionLabel>Projects</SectionLabel>
-            </motion.div>
-            <VStack gap={8} alignItems="flex-start">
-              {constants.projects
-                .filter((project) => project.featured)
-                .map((project) => (
-                  <motion.div key={project.id} variants={fadeUpVariants} style={{ width: '100%' }}>
-                    <Box width="100%">
+          <motion.div variants={fadeUpVariants}>
+            <Box borderTop="1px solid" borderColor="border.subtle" pt={10} mb={10}>
+              <motion.p className="section-label">Projects</motion.p>
+              <VStack gap={8} alignItems="flex-start">
+                {constants.projects
+                  .filter((project) => project.featured)
+                  .map((project) => (
+                    <Box key={project.id} width="100%">
                       <HStack justifyContent="space-between" alignItems="center" mb={2}>
-                        <HStack gap={3} alignItems="center">
-                          <Text
-                            fontFamily="heading"
-                            fontWeight="600"
-                            color="text.heading"
-                            fontSize="subheading"
-                          >
-                            {project.title}
-                          </Text>
-                        </HStack>
-                        <Text
-                          fontFamily="subheading"
-                          fontWeight={400}
-                          fontSize="aux"
-                          color="brand.body"
-                        >
-                          {project.date}
-                        </Text>
+                        <motion.p className="project-title">{project.title}</motion.p>
+                        <motion.p className="project-date">{project.date}</motion.p>
                       </HStack>
-                      {/* {project.status && <StatusBadge status={project.status}  />} */}
-                      <Text mb={3} maxW="540px">
-                        {project.description}
-                      </Text>
+                      <motion.div className="">
+                        <Text mb={2}>{project.description}</Text>
+                      </motion.div>
                       <Link
                         href={project.link.href}
                         target="_blank"
@@ -191,23 +167,14 @@ const IndexPage = () => {
                         View Project <ArrowUpRight size={14} />
                       </Link>
                     </Box>
-                  </motion.div>
-                ))}
-            </VStack>
-          </Box>
-        </motion.div>
+                  ))}
+              </VStack>
+            </Box>
+          </motion.div>
 
-        <motion.div
-          ref={connectRef}
-          variants={staggerVariants}
-          initial="hidden"
-          animate={connectInView ? 'visible' : 'hidden'}
-        >
-          <Box borderTop="1px solid" borderColor="border.subtle" pt={10}>
-            <motion.div variants={fadeUpVariants}>
-              <SectionLabel>Connect</SectionLabel>
-            </motion.div>
-            <motion.div variants={fadeUpVariants}>
+          <motion.div variants={fadeUpVariants}>
+            <Box borderTop="1px solid" borderColor="border.subtle" pt={10}>
+              <motion.p className="section-label">Connect</motion.p>
               <HStack gap={5}>
                 {constants.socials.map((link) => (
                   <Link
@@ -224,10 +191,10 @@ const IndexPage = () => {
                   </Link>
                 ))}
               </HStack>
-            </motion.div>
-          </Box>
-        </motion.div>
-      </Container>
+            </Box>
+          </motion.div>
+        </Container>
+      </motion.div>
     </Layout>
   );
 };

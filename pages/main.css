@@ -1,5 +1,5 @@
 html {
-  --brand-black: #0a0a0a;
+  --brand-black: #11110f;
   --brand-white: #fffffc;
   --brand-primary: #38a0cc;
   --brand-blue: #38a0cc;
@@ -7,7 +7,7 @@ html {
   --brand-red: #d6544b;
   --brand-yellow: #efdf60;
   --brand-grey-strong: #27272a;
-  --brand-grey-medium: #52525b;
+  --brand-grey-medium: #696973;
   --brand-grey-light: #a1a1aa;
   --brand-grey-soft: #e4e4e7;
 
@@ -17,4 +17,47 @@ html {
 
 .profileImg {
   border-radius: 8px;
+}
+
+.section-label {
+  font-family: var(--font-geist-mono), system-ui, monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brand-grey-medium);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.body-text {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--brand-white);
+}
+
+.body-text--spaced {
+  margin-bottom: 16px;
+}
+
+.project-title {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--brand-white);
+}
+
+.project-date {
+  font-family: var(--font-geist-mono), system-ui, monospace;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--brand-grey-light);
+}
+
+.display-name {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--brand-white);
+  margin-bottom: 12px;
+  letter-spacing: -0.04em;
 }
