@@ -3,7 +3,8 @@ export const SITE_URL = 'https://www.leroyclarkejr.com';
 export const DEFAULT_SEO = {
   defaultTitle: 'Leroy Clarke Jr',
   titleTemplate: '%s — Leroy Clarke Jr',
-  description: '',
+  description:
+    'Software engineer building tool that help ambitious indivudals engineer their own outcomes.',
   canonical: SITE_URL,
   openGraph: {
     type: 'website',
