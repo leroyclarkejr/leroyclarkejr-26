@@ -99,8 +99,8 @@ const StaggeredText = forwardRef<StaggeredTextHandle, StaggeredTextProps>(
       segmentBy = 'chars',
       separator,
       delay = 50,
-      duration = 0.4,
-      easing = 'easeInOut',
+      duration = 0.3,
+      easing = 'easeOut',
       threshold = 0.1,
       rootMargin = '0px',
       direction = 'right',
@@ -177,9 +177,9 @@ const StaggeredText = forwardRef<StaggeredTextHandle, StaggeredTextProps>(
       };
 
       if (direction === 'top' || direction === 'bottom') {
-        base.y = direction === 'top' ? -40 : 40;
+        base.y = direction === 'top' ? -20 : 20;
       } else {
-        base.x = direction === 'left' ? -40 : 40;
+        base.x = direction === 'left' ? -20 : 20;
       }
 
       if (blur) {

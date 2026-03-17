@@ -52,7 +52,8 @@ const staggerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.15,
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
     },
   },
 };
@@ -74,7 +75,7 @@ const IndexPage = () => {
 
   return (
     <Layout
-      title="Leroy Clarke Jr — Digital Garden"
+      title="Leroy Clarke Jr — Product Engineer"
       description="I'm Leroy, a self-taught Software Engineer from Jersey City. Currently building tools for ambitious people."
       path="/"
     >
@@ -162,7 +163,8 @@ const IndexPage = () => {
                         color="text.heading"
                         textDecoration="underline"
                         textUnderlineOffset="3px"
-                        transition="all 0.2s"
+                        transition="all 0.2s ease-out"
+                        _active={{ transform: 'scale(0.97)' }}
                       >
                         View Project <ArrowUpRight size={14} />
                       </Link>
@@ -184,8 +186,9 @@ const IndexPage = () => {
                     rel="noopener noreferrer"
                     color="text.body"
                     _hover={{ color: 'text.heading' }}
+                    _active={{ transform: 'scale(0.92)' }}
                     aria-label={link.name}
-                    transition="color 0.2s"
+                    transition="all 0.2s ease-out"
                   >
                     {iconMap[link.icon]}
                   </Link>
