@@ -58,10 +58,20 @@ const constants: ConstantProps = {
       id: 'transcripted',
       title: 'Transcripted',
       date: 'Feb 2026',
-      status: 'Beta',
+      status: 'In Development',
       description:
-        'Local-first desktop app. Extracting notes from YouTube & social media videos was too tedious, so I created a tool to fetch and highlight transcriptions entirely offline. No cloud. No servers. No subscriptions. Note taking efficiency.',
+        'Local-first desktop app. Turn any video into structured notes, fully offline. Pulling notes out of YouTube and Instagram Reels was tedious, and every tool that did it well wanted my data and a subscription. So I built my own. yt-dlp grabs the audio, Whisper transcribes it on-device, and nothing ever leaves your machine. No cloud. No servers. No subscription.',
       link: { href: 'https://transcripted-hazel.vercel.app/', label: '' },
+      featured: true,
+    },
+    {
+      id: 'context-deck',
+      title: 'Context Deck',
+      date: 'Jun 2026',
+      status: 'In Development',
+      description:
+        'Desktop and web app. Your brand, defined once and available to every AI tool you use. Brand context is a copy-paste nightmare, scattered across Notion docs, Figma files, CSS, and old chat threads, so you end up re-explaining your brand to every tool you touch. Context Deck turns that scattered vision into one living design system, then serves it to any AI agent over MCP. Nearing first release.',
+      link: { href: 'https://demo.contextdeck.ai', label: '' },
       featured: true,
     },
   ],
